@@ -14,12 +14,22 @@ def rescaleFrame(frame, scale = 0.75):
     # Height and width ar integers and after multiplication they become 
     # floating point numbers. In order to fix that, we need to typecase again 
     # in int()
+
+    """Works for Images, Videos and LiveVideo"""
     height = int(frame.shape[0] * scale)
     width = int(frame.shape[1] * scale)
     dimensions = (width, height)
 
     # resizes a video to a particular dimension
     return cv.resize(frame, dimensions, interpolation=cv.INTER_AREA)
+
+def changeRes(width, height):
+    # 3 references to width, 4 references to height
+    # These are propertyIds
+    """Works for Live Video ONLY"""
+
+    capture.set(3, width)
+    capture.set(4, height)
 
 capture = cv.VideoCapture("Videos/dog.mp4")
 
